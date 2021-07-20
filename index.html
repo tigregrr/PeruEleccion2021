@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Shiny</title>
+
+<script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="shared/selectize/css/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="shared/selectize/js/selectize.min.js"></script>
+<script src="shared/selectize/accessibility/js/selectize-plugin-a11y.min.js"></script>
+<script src="shared/ionrangeslider/js/ion.rangeSlider.min.js"></script>
+<script src="shared/strftime/strftime-min.js"></script>
+<link href="shared/ionrangeslider/css/ion.rangeSlider.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; } /* Alert */
+code span.an { color: #008000; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #0000ff; } /* ControlFlow */
+code span.ch { color: #008080; } /* Char */
+code span.cn { } /* Constant */
+code span.co { color: #008000; } /* Comment */
+code span.cv { color: #008000; } /* CommentVar */
+code span.do { color: #008000; } /* Documentation */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.im { } /* Import */
+code span.in { color: #008000; } /* Information */
+code span.kw { color: #0000ff; } /* Keyword */
+code span.op { } /* Operator */
+code span.ot { color: #ff4000; } /* Other */
+code span.pp { color: #ff4000; } /* Preprocessor */
+code span.sc { color: #008080; } /* SpecialChar */
+code span.ss { color: #008080; } /* SpecialString */
+code span.st { color: #008080; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #008080; } /* VerbatimString */
+code span.wa { color: #008000; font-weight: bold; } /* Warning */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#section-TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#section-TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="section-TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div id="section-header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Shiny</h1>
+
+</div>
+
+
+<style type="text/css">
+
+    body, td {  background-color: white;
+                font-size: 16px; }
+    code.r{     font-size: 12px; }
+    pre {       font-size: 10px  }
+    .table{     width:auto;
+                font-size: 9px; }
+          
+    
+</style>
+<div id="section-top" class="section level3">
+<h3><strong><em>Top</em></strong></h3>
+<p><br></p>
+<div id="section-author-luis-urbina" class="section level5">
+<h5>Author: <strong><em>Luis Urbina</em></strong></h5>
+</div>
+<div id="section-last-update-october-31-2020" class="section level5">
+<h5>Last Update: <strong><em>October 31, 2020 </em></strong></h5>
+<p><br></p>
+</div>
+</div>
+<div id="section-shiny" class="section level3">
+<h3><strong><em>Shiny</em></strong></h3>
+<p><br></p>
+<p>This R Markdown document is made interactive using Shiny. Unlike the more traditional workflow of creating static reports, you can now create documents that allow your readers to change the assumptions underlying your analysis and see the results immediately.</p>
+<p>To learn more, see <a href="http://rmarkdown.rstudio.com/authoring_shiny.html">Interactive Documents</a>.</p>
+</div>
+<div id="section-inputs-and-outputs" class="section level3">
+<h3><strong><em>Inputs and Outputs</em></strong></h3>
+<p>You can embed Shiny inputs and outputs in your document. Outputs are automatically updated whenever inputs change. This demonstrates how a standard R plot can be made interactive by wrapping it in the Shiny <code>renderPlot</code> function. The <code>selectInput</code> and <code>sliderInput</code> functions create the input widgets used to drive the plot.</p>
+</div>
+<div id="section-interactive-plot-1" class="section level3">
+<h3><strong><em>Interactive Plot 1</em></strong></h3>
+<div class="shiny-input-panel">
+<div class="shiny-flow-layout">
+<div>
+<div class="form-group shiny-input-container">
+<label class="control-label" id="n_breaks-label" for="n_breaks">Number of bins:</label>
+<div>
+<select id="n_breaks"><option value="10">10</option>
+<option value="20" selected>20</option>
+<option value="35">35</option>
+<option value="50">50</option></select>
+<script type="application/json" data-for="n_breaks" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
+</div>
+</div>
+</div>
+<div>
+<div class="form-group shiny-input-container">
+<label class="control-label" id="bw_adjust-label" for="bw_adjust">Bandwidth adjustment:</label>
+<input class="js-range-slider" id="bw_adjust" data-skin="shiny" data-min="0.2" data-max="2" data-from="1" data-step="0.2" data-grid="true" data-grid-num="9" data-grid-snap="false" data-prettify-separator="," data-prettify-enabled="true" data-keyboard="true" data-data-type="number"/>
+</div>
+</div>
+</div>
+</div>
+<p><div id="outcb94d8cabf31cbda" class="shiny-plot-output" style="width:100%;height:400px;"></div></p>
+</div>
+<div id="section-embedded-application" class="section level3">
+<h3><strong><em>Embedded Application</em></strong></h3>
+<p>It’s also possible to embed an entire Shiny application within an R Markdown document using the <code>shinyAppDir</code> function. This example embeds a Shiny application located in another directory:</p>
+<p><iframe data-deferred-src="app31226dd2f07351e56d359a8628f6ce53/?w=&amp;__subapp__=1" width="100%" height="550" class="shiny-frame shiny-frame-deferred"></iframe></p>
+<p>Note the use of the <code>height</code> parameter to determine how much vertical space the embedded application should occupy.</p>
+<p>You can also use the <code>shinyApp</code> function to define an application inline rather then in an external directory.</p>
+<p>In all of R code chunks above the <code>echo = FALSE</code> attribute is used. This is to prevent the R code within the chunk from rendering in the document alongside the Shiny components.</p>
+<p><br></p>
+</div>
+<div id="section-r---performance-operations" class="section level3">
+<h3><strong><em>R - Performance Operations</em></strong></h3>
+<p><br></p>
+<p>A dataset extract oriented to evaluate the daily performance operations with more than 1.4 million rows per month and around 60 input variables. A process to extract, clean and transform the input data to build meaningful charts, graphs, key performance indicators, and dashboards to unhide relevant and worth information about the daily operations performance to managers, directors and top stakeholders in one organizations with more than 10,000 employees. This article is all about that.</p>
+<p>The organization cares about, a) the number of applications citizens do to be granted for social benefits, and b) the performance of the employees disposing the applications. Social benefits are categorized by their nature such as claiming for food, child, older, disabilities, pregnancy benefits. Complexity of the applications is based on the requirements for each type of applications.</p>
+<p>Employees are classified by their gained skills on process complex applications; it translates in the time taking to process the applications. So, standards evaluation for workers is based on the number of applications processed in the number of working hours. The data processing is focus on be a high-performance process by itself. The end products must be for daily, monthly, or annual periods, which take to cumulate data and use timeseries data for the analysis, charts, and graphs.</p>
+<p><br></p>
+<div class="sourceCode" id="section-cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="section-cb1-1"><a href="#section-cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># OXLSX_12</span></span>
+<span id="section-cb1-2"><a href="#section-cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#print(dset, n=2)</span></span>
+<span id="section-cb1-3"><a href="#section-cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="section-cb1-4"><a href="#section-cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># OXLSX_12$APP_PERCENT &lt;- round(OXLSX_12$APP_PERCENT * 100, digits = 1)</span></span>
+<span id="section-cb1-5"><a href="#section-cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># OXLSX_12$REDET_PERCENT &lt;- round(OXLSX_12$REDET_PERCENT * 100, digits = 1)</span></span>
+<span id="section-cb1-6"><a href="#section-cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># OXLSX_12$AVG_DISP_DAYLY &lt;- round(OXLSX_12$AVG_DISP_DAYLY, digits = 0)</span></span>
+<span id="section-cb1-7"><a href="#section-cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># OXLSX_12$AVG_DTD &lt;- round(OXLSX_12$AVG_DTD, digits = 1)</span></span>
+<span id="section-cb1-8"><a href="#section-cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># OXLSX_12$DTD_0_PERC &lt;- round(OXLSX_12$DTD_0_PERC * 100, digits = 1)</span></span>
+<span id="section-cb1-9"><a href="#section-cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="section-cb1-10"><a href="#section-cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># # as.data.frame(head(OXLSX_12[,c(2,4:5,7:13)]))</span></span>
+<span id="section-cb1-11"><a href="#section-cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="section-cb1-12"><a href="#section-cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># kable(OXLSX_12[,c(2,4,5,7:13)], caption = &#39;OXLSX_12 Table&#39;)</span></span></code></pre></div>
+<p><br></p>
+</div>
+<div id="section-plot-1" class="section level3">
+<h3><strong><em>Plot 1</em></strong></h3>
+<div class="sourceCode" id="section-cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="section-cb2-1"><a href="#section-cb2-1" aria-hidden="true" tabindex="-1"></a>p_meds <span class="ot">&lt;-</span> <span class="fu">ddply</span>(dset, .(PROG_CD), summarise, <span class="at">med =</span> <span class="fu">median</span>(APP_TIMELY))</span>
+<span id="section-cb2-2"><a href="#section-cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="section-cb2-3"><a href="#section-cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dset, <span class="fu">aes</span>(<span class="at">x=</span>PROG_CD , <span class="at">y=</span>APP_TIMELY)) <span class="sc">+</span></span>
+<span id="section-cb2-4"><a href="#section-cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_boxplot</span>(<span class="at">color=</span><span class="st">&#39;#3d3d5c&#39;</span>, <span class="at">fill=</span><span class="st">&#39;#ff6666&#39;</span>) <span class="sc">+</span></span>
+<span id="section-cb2-5"><a href="#section-cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_text</span>(<span class="at">data=</span>p_meds, <span class="fu">aes</span>(<span class="at">x=</span>PROG_CD, <span class="at">y=</span>med, <span class="at">label=</span>med),</span>
+<span id="section-cb2-6"><a href="#section-cb2-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">size=</span><span class="dv">3</span>, <span class="at">vjust=</span><span class="sc">-</span><span class="fl">0.75</span>, <span class="at">color=</span><span class="st">&#39;#3d3d5c&#39;</span>) <span class="sc">+</span></span>
+<span id="section-cb2-7"><a href="#section-cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">&#39;TX Programs&#39;</span>) <span class="sc">+</span></span>
+<span id="section-cb2-8"><a href="#section-cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="st">&#39;Applications Timeliness&#39;</span>)</span></code></pre></div>
+<p><img src="index_files/figure-html/PROG_CD,%20APP_TIMELY,%20EMP_CD-1.png" width="576" /></p>
+<p><br></p>
+</div>
+<div id="section-plot-2" class="section level3">
+<h3><strong><em>Plot 2</em></strong></h3>
+<div class="sourceCode" id="section-cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="section-cb3-1"><a href="#section-cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dset, <span class="fu">aes</span>(<span class="at">x=</span> PROG_CD, <span class="at">y=</span>APP_TIMELY, <span class="at">fill=</span>EMP_CD)) <span class="sc">+</span></span>
+<span id="section-cb3-2"><a href="#section-cb3-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="section-cb3-3"><a href="#section-cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_fill_manual</span>( <span class="at">values =</span> luisPallete ) <span class="sc">+</span></span>
+<span id="section-cb3-4"><a href="#section-cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">&#39;TX Programs&#39;</span>) <span class="sc">+</span></span>
+<span id="section-cb3-5"><a href="#section-cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="st">&#39;Applications Timeliness&#39;</span>)</span></code></pre></div>
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" width="576" /></p>
+<p><br></p>
+</div>
+<div id="section-bibliography" class="section level3">
+<h3><strong><em>Bibliography</em></strong></h3>
+<center>
+This is an R Markdown document <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>
+<center>
+<center>
+Copyright &amp; Copy; 2020 Luis Urbina, Inc. All rights reserved. Austin, Texas USA
+<center>
+<p><br></p>
+<p>.</p>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("section-TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#section-TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
