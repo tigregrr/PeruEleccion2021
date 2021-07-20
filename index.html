@@ -366,16 +366,15 @@ div.tocify {
 <div id="section-author-luis-urbina" class="section level5">
 <h5>Author: <strong><em>Luis Urbina</em></strong></h5>
 </div>
-<div id="section-last-update-october-31-2020" class="section level5">
-<h5>Last Update: <strong><em>October 31, 2020 </em></strong></h5>
+<div id="section-last-update-july-19-2021" class="section level5">
+<h5>Last Update: <strong><em>July 19, 2021 </em></strong></h5>
 <p><br></p>
 </div>
 </div>
 <div id="section-shiny" class="section level3">
 <h3><strong><em>Shiny</em></strong></h3>
 <p><br></p>
-<p>This R Markdown document is made interactive using Shiny. Unlike the more traditional workflow of creating static reports, you can now create documents that allow your readers to change the assumptions underlying your analysis and see the results immediately.</p>
-<p>To learn more, see <a href="http://rmarkdown.rstudio.com/authoring_shiny.html">Interactive Documents</a>.</p>
+<p>This R Markdown document is made interactive using Shiny. To learn more, see <a href="http://rmarkdown.rstudio.com/authoring_shiny.html">Interactive Documents</a>.</p>
 </div>
 <div id="section-inputs-and-outputs" class="section level3">
 <h3><strong><em>Inputs and Outputs</em></strong></h3>
@@ -390,8 +389,8 @@ div.tocify {
 <label class="control-label" id="n_breaks-label" for="n_breaks">Number of bins:</label>
 <div>
 <select id="n_breaks"><option value="10">10</option>
-<option value="20" selected>20</option>
-<option value="35">35</option>
+<option value="20">20</option>
+<option value="35" selected>35</option>
 <option value="50">50</option></select>
 <script type="application/json" data-for="n_breaks" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
 </div>
@@ -400,17 +399,17 @@ div.tocify {
 <div>
 <div class="form-group shiny-input-container">
 <label class="control-label" id="bw_adjust-label" for="bw_adjust">Bandwidth adjustment:</label>
-<input class="js-range-slider" id="bw_adjust" data-skin="shiny" data-min="0.2" data-max="2" data-from="1" data-step="0.2" data-grid="true" data-grid-num="9" data-grid-snap="false" data-prettify-separator="," data-prettify-enabled="true" data-keyboard="true" data-data-type="number"/>
+<input class="js-range-slider" id="bw_adjust" data-skin="shiny" data-min="0.5" data-max="2" data-from="1" data-step="0.2" data-grid="true" data-grid-num="7.5" data-grid-snap="false" data-prettify-separator="," data-prettify-enabled="true" data-keyboard="true" data-data-type="number"/>
 </div>
 </div>
 </div>
 </div>
-<p><div id="outcb94d8cabf31cbda" class="shiny-plot-output" style="width:100%;height:400px;"></div></p>
+<p><div id="out912d2da665df699c" class="shiny-plot-output" style="width:100%;height:400px;"></div></p>
 </div>
 <div id="section-embedded-application" class="section level3">
 <h3><strong><em>Embedded Application</em></strong></h3>
 <p>It’s also possible to embed an entire Shiny application within an R Markdown document using the <code>shinyAppDir</code> function. This example embeds a Shiny application located in another directory:</p>
-<p><iframe data-deferred-src="app31226dd2f07351e56d359a8628f6ce53/?w=&amp;__subapp__=1" width="100%" height="550" class="shiny-frame shiny-frame-deferred"></iframe></p>
+<p><iframe data-deferred-src="app10e797d92b986d69bbf1e9167ad5dbf4/?w=&amp;__subapp__=1" width="100%" height="550" class="shiny-frame shiny-frame-deferred"></iframe></p>
 <p>Note the use of the <code>height</code> parameter to determine how much vertical space the embedded application should occupy.</p>
 <p>You can also use the <code>shinyApp</code> function to define an application inline rather then in an external directory.</p>
 <p>In all of R code chunks above the <code>echo = FALSE</code> attribute is used. This is to prevent the R code within the chunk from rendering in the document alongside the Shiny components.</p>
@@ -420,21 +419,112 @@ div.tocify {
 <h3><strong><em>R - Performance Operations</em></strong></h3>
 <p><br></p>
 <p>A dataset extract oriented to evaluate the daily performance operations with more than 1.4 million rows per month and around 60 input variables. A process to extract, clean and transform the input data to build meaningful charts, graphs, key performance indicators, and dashboards to unhide relevant and worth information about the daily operations performance to managers, directors and top stakeholders in one organizations with more than 10,000 employees. This article is all about that.</p>
-<p>The organization cares about, a) the number of applications citizens do to be granted for social benefits, and b) the performance of the employees disposing the applications. Social benefits are categorized by their nature such as claiming for food, child, older, disabilities, pregnancy benefits. Complexity of the applications is based on the requirements for each type of applications.</p>
-<p>Employees are classified by their gained skills on process complex applications; it translates in the time taking to process the applications. So, standards evaluation for workers is based on the number of applications processed in the number of working hours. The data processing is focus on be a high-performance process by itself. The end products must be for daily, monthly, or annual periods, which take to cumulate data and use timeseries data for the analysis, charts, and graphs.</p>
 <p><br></p>
 <div class="sourceCode" id="section-cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="section-cb1-1"><a href="#section-cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># OXLSX_12</span></span>
-<span id="section-cb1-2"><a href="#section-cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#print(dset, n=2)</span></span>
+<span id="section-cb1-2"><a href="#section-cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># print(dset, n=2)</span></span>
 <span id="section-cb1-3"><a href="#section-cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="section-cb1-4"><a href="#section-cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># OXLSX_12$APP_PERCENT &lt;- round(OXLSX_12$APP_PERCENT * 100, digits = 1)</span></span>
-<span id="section-cb1-5"><a href="#section-cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># OXLSX_12$REDET_PERCENT &lt;- round(OXLSX_12$REDET_PERCENT * 100, digits = 1)</span></span>
-<span id="section-cb1-6"><a href="#section-cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># OXLSX_12$AVG_DISP_DAYLY &lt;- round(OXLSX_12$AVG_DISP_DAYLY, digits = 0)</span></span>
-<span id="section-cb1-7"><a href="#section-cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># OXLSX_12$AVG_DTD &lt;- round(OXLSX_12$AVG_DTD, digits = 1)</span></span>
-<span id="section-cb1-8"><a href="#section-cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># OXLSX_12$DTD_0_PERC &lt;- round(OXLSX_12$DTD_0_PERC * 100, digits = 1)</span></span>
-<span id="section-cb1-9"><a href="#section-cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="section-cb1-10"><a href="#section-cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># # as.data.frame(head(OXLSX_12[,c(2,4:5,7:13)]))</span></span>
-<span id="section-cb1-11"><a href="#section-cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="section-cb1-12"><a href="#section-cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># kable(OXLSX_12[,c(2,4,5,7:13)], caption = &#39;OXLSX_12 Table&#39;)</span></span></code></pre></div>
+<span id="section-cb1-4"><a href="#section-cb1-4" aria-hidden="true" tabindex="-1"></a>OXLSX_12<span class="sc">$</span>APP_PERCENT <span class="ot">&lt;-</span> <span class="fu">round</span>(OXLSX_12<span class="sc">$</span>APP_PERCENT <span class="sc">*</span> <span class="dv">100</span>, <span class="at">digits =</span> <span class="dv">1</span>)</span>
+<span id="section-cb1-5"><a href="#section-cb1-5" aria-hidden="true" tabindex="-1"></a>OXLSX_12<span class="sc">$</span>REDET_PERCENT <span class="ot">&lt;-</span> <span class="fu">round</span>(OXLSX_12<span class="sc">$</span>REDET_PERCENT <span class="sc">*</span> <span class="dv">100</span>, <span class="at">digits =</span> <span class="dv">1</span>)</span>
+<span id="section-cb1-6"><a href="#section-cb1-6" aria-hidden="true" tabindex="-1"></a>OXLSX_12<span class="sc">$</span>AVG_DISP_DAYLY <span class="ot">&lt;-</span> <span class="fu">round</span>(OXLSX_12<span class="sc">$</span>AVG_DISP_DAYLY, <span class="at">digits =</span> <span class="dv">0</span>)</span>
+<span id="section-cb1-7"><a href="#section-cb1-7" aria-hidden="true" tabindex="-1"></a>OXLSX_12<span class="sc">$</span>AVG_DTD <span class="ot">&lt;-</span> <span class="fu">round</span>(OXLSX_12<span class="sc">$</span>AVG_DTD, <span class="at">digits =</span> <span class="dv">1</span>)</span>
+<span id="section-cb1-8"><a href="#section-cb1-8" aria-hidden="true" tabindex="-1"></a>OXLSX_12<span class="sc">$</span>DTD_0_PERC <span class="ot">&lt;-</span> <span class="fu">round</span>(OXLSX_12<span class="sc">$</span>DTD_0_PERC <span class="sc">*</span> <span class="dv">100</span>, <span class="at">digits =</span> <span class="dv">1</span>)</span>
+<span id="section-cb1-9"><a href="#section-cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="section-cb1-10"><a href="#section-cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># as.data.frame(head(OXLSX_12[,c(2,4:5,7:13)]))</span></span>
+<span id="section-cb1-11"><a href="#section-cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="section-cb1-12"><a href="#section-cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(OXLSX_12[,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span><span class="sc">:</span><span class="dv">13</span>)], <span class="at">caption =</span> <span class="st">&#39;OXLSX_12 Table&#39;</span>)</span></code></pre></div>
+<table style="width:100%;">
+<caption>OXLSX_12 Table</caption>
+<colgroup>
+<col width="8%" />
+<col width="8%" />
+<col width="10%" />
+<col width="10%" />
+<col width="12%" />
+<col width="9%" />
+<col width="13%" />
+<col width="7%" />
+<col width="8%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">PROG_CD</th>
+<th align="right">APP_TOTAL</th>
+<th align="right">APP_PERCENT</th>
+<th align="right">REDET_TOTAL</th>
+<th align="right">REDET_PERCENT</th>
+<th align="right">TOTAL_DISP</th>
+<th align="right">AVG_DISP_DAYLY</th>
+<th align="right">AVG_DTD</th>
+<th align="right">TOT_DTD_0</th>
+<th align="right">DTD_0_PERC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Child</td>
+<td align="right">34281</td>
+<td align="right">95.3</td>
+<td align="right">7594</td>
+<td align="right">91.1</td>
+<td align="right">41875</td>
+<td align="right">13958</td>
+<td align="right">32.2</td>
+<td align="right">3026</td>
+<td align="right">8.8</td>
+</tr>
+<tr class="even">
+<td align="left">Health</td>
+<td align="right">24106</td>
+<td align="right">94.8</td>
+<td align="right">3401</td>
+<td align="right">96.5</td>
+<td align="right">27507</td>
+<td align="right">9169</td>
+<td align="right">13.4</td>
+<td align="right">2439</td>
+<td align="right">10.1</td>
+</tr>
+<tr class="odd">
+<td align="left">Pregnant</td>
+<td align="right">5997</td>
+<td align="right">94.9</td>
+<td align="right">366</td>
+<td align="right">96.2</td>
+<td align="right">6363</td>
+<td align="right">2121</td>
+<td align="right">14.3</td>
+<td align="right">383</td>
+<td align="right">6.4</td>
+</tr>
+<tr class="even">
+<td align="left">Senior</td>
+<td align="right">7338</td>
+<td align="right">96.5</td>
+<td align="right">758</td>
+<td align="right">99.7</td>
+<td align="right">8096</td>
+<td align="right">2699</td>
+<td align="right">18.6</td>
+<td align="right">157</td>
+<td align="right">2.1</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="right">71722</td>
+<td align="right">95.2</td>
+<td align="right">12119</td>
+<td align="right">93.3</td>
+<td align="right">83841</td>
+<td align="right">27947</td>
+<td align="right">78.6</td>
+<td align="right">6005</td>
+<td align="right">8.4</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>The organization cares about, a) the number of applications citizens do to be granted for social benefits, and b) the performance of the employees disposing the applications. Social benefits are categorized by their nature such as claiming for food, child, older, disabilities, pregnancy benefits. Complexity of the applications is based on the requirements for each type of applications.</p>
 <p><br></p>
 </div>
 <div id="section-plot-1" class="section level3">
@@ -448,6 +538,8 @@ div.tocify {
 <span id="section-cb2-7"><a href="#section-cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">xlab</span>(<span class="st">&#39;TX Programs&#39;</span>) <span class="sc">+</span></span>
 <span id="section-cb2-8"><a href="#section-cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ylab</span>(<span class="st">&#39;Applications Timeliness&#39;</span>)</span></code></pre></div>
 <p><img src="index_files/figure-html/PROG_CD,%20APP_TIMELY,%20EMP_CD-1.png" width="576" /></p>
+<p><br></p>
+<p>Employees are classified by their gained skills on process complex applications; it translates in the time taking to process the applications. So, standards evaluation for workers is based on the number of applications processed in the number of working hours. The data processing is focus on be a high-performance process by itself. The end products must be for daily, monthly, or annual periods, which take to cumulate data and use timeseries data for the analysis, charts, and graphs.</p>
 <p><br></p>
 </div>
 <div id="section-plot-2" class="section level3">
